@@ -35,6 +35,11 @@ def callback_get():
     # debug
     return "THIS IS GET."
 
+@app.route('/test', methods=["GET"])
+def callback_get_test():
+    # debug
+    return "THIS IS GET TEST."
+
 @app.route('/test', methods=["POST"])
 def callback_post_test():
     # debug
