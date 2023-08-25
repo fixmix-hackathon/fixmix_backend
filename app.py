@@ -38,3 +38,7 @@ def callback_callmessage():
     chat.messages.append(reply_message)
     return chat.get_api_content()
 
+
+@app.route("/",methods=["GET"])
+def callback_route_get():
+    return "THIS IS GET TEST 0825."
