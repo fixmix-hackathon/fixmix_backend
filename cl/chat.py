@@ -1,4 +1,4 @@
-from message import message
+from cl.message import message
 
 class chat:
     def __init__(self, user_id: str, chat_id: int, messages: list[message]):

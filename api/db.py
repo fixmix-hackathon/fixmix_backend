@@ -5,7 +5,8 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from cl import chat, message
+from cl.chat import chat
+from cl.message import message
 
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
