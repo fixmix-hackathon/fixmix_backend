@@ -21,7 +21,7 @@ def getchat(user_id: str, chat_id: int) -> chat:
     return chat(user_id, chat_id, messages)
 
 def getuserschatid(user_id: str) -> list[int]:
-    result = supabase_client.table("messages").select("chat_id").eq("user_id", user_id).execute()
+    result = supabase_client.table("chats").select("chat_id").eq("user_id", user_id).execute()
     return [i["chat_id"] for i in result.data]
 
 
