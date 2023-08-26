@@ -9,18 +9,18 @@ class chat:
         self.messages = messages
 
     def get_api_content(self) -> list[dict]:
-        return self._jsonalize(role_check=True, show_system_prompt=True)
+        return self._jsonalize(role_check=True, show_system_prompt=True, show_timestamp=False)
 
     def get_content(self) -> list[dict]:
-        return self._jsonalize(role_check=False, show_system_prompt=False)
+        return self._jsonalize(role_check=False, show_system_prompt=False, show_timestamp=True)
 
-    def _jsonalize(self, role_check: bool, show_system_prompt: bool) -> list[dict]:
+    def _jsonalize(self, role_check: bool, show_system_prompt: bool, show_timestamp: bool) -> list[dict]:
         result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
-            result.append({
-                "role": mes.author,
-                "content": mes.message
-            })
+            _json = {"role": mes.author, "content": mes.message}
+            if show_timestamp:
+                _json["time"] = mes.send_time
+            result.append(_json)
 
         if not show_system_prompt:
             result = [i for i in result if i["role"] != "system"]
