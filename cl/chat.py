@@ -11,12 +11,14 @@ class chat:
     def get_api_content(self, role_check: bool = True, show_system_prompt: bool = True) -> list[dict]:
         result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
-            if not show_system_prompt and mes.author == "system":
-                continue
             result.append({
                 "role": mes.author,
                 "content": mes.message
             })
+
+        if not show_system_prompt:
+            result = [i for i in result if i["role"] != "system"]
+
         if len(result) != 0:
             if role_check and result[-1]["role"] == "assistant":
                 raise RuntimeError("Last Content's author is ASSISTANT.")
