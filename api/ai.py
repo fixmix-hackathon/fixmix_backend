@@ -11,6 +11,8 @@ MODEL = os.getenv("openai_model")
 
 
 def run(send_chat: chat) -> str:
+    global MODEL
+
     # call OpenAI's ChatCompletion.
     cmpl = openai.ChatCompletion.create(
         model=MODEL,
