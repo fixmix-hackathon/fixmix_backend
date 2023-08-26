@@ -1,5 +1,4 @@
 from flask import Flask, request
-import openai
 
 from api import db, ai
 
