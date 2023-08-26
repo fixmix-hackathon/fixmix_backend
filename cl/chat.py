@@ -8,7 +8,13 @@ class chat:
         self.chat_id = chat_id
         self.messages = messages
 
-    def get_api_content(self, role_check: bool = True, show_system_prompt: bool = True) -> list[dict]:
+    def get_api_content(self) -> list[dict]:
+        return self._jsonalize(role_check=True, show_system_prompt=True)
+
+    def get_content(self) -> list[dict]:
+        return self._jsonalize(role_check=False, show_system_prompt=False)
+
+    def _jsonalize(self, role_check: bool, show_system_prompt: bool) -> list[dict]:
         result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
             result.append({
