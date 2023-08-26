@@ -55,6 +55,16 @@ def callback_get_chat_messages():
     chat_id: int = request.args.get("chat_id", type=int)
     return db.getchat(user_id, chat_id).get_content()
 
+@app.route("/chats/new",methods=["POST"])
+def callback_new_chat():
+    """
+        {
+            "user_id": <UID>
+        }
+    """
+    user_id: str = request.json["user_id"]
+    return db.newchat(user_id)
+
 @app.route("/",methods=["GET"])
 def callback_route_get():
     return "THIS IS GET TEST 0825."
