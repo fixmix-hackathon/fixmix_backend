@@ -3,7 +3,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from cl.chat import chat
+from models.chat import chat
 
 openai.organization = os.getenv("env_openai_orgid")
 openai.api_key = os.getenv("env_openai_apikey")

@@ -1,4 +1,4 @@
-from cl.message import message
+from models.message import message
 
 SYSTEM_PROMPT = "You are a helpful assistant. Please answer in Japanese."
 
