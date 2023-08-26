@@ -14,7 +14,7 @@ def run(send_chat: chat) -> str:
     # call OpenAI's ChatCompletion.
     cmpl = openai.ChatCompletion.create(
         model=MODEL,
-        messages=send_chat,
+        messages=send_chat.get_api_content(),
         temperature=0
     )
     return cmpl["choices"][0]["message"]["content"]
