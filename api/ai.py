@@ -7,7 +7,7 @@ from cl.chat import chat
 
 openai.organization = os.getenv("env_openai_orgid")
 openai.api_key = os.getenv("env_openai_apikey")
-MODEL = "gpt-3.5-turbo"
+MODEL = os.getenv("openai_model")
 
 
 def run(send_chat: chat) -> str:
