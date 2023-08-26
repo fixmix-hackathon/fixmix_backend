@@ -1,5 +1,7 @@
 from cl.message import message
 
+SYSTEM_PROMPT = "You are a helpful assistant. Please answer in Japanese."
+
 class chat:
     def __init__(self, user_id: str, chat_id: int, messages: list[message]):
         self.user_id = user_id
@@ -7,7 +9,7 @@ class chat:
         self.messages = messages
 
     def get_api_content(self) -> list[dict]:
-        result = []
+        result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
             result.append({
                 "role": mes.author,
