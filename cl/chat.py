@@ -8,7 +8,7 @@ class chat:
         self.chat_id = chat_id
         self.messages = messages
 
-    def get_api_content(self) -> list[dict]:
+    def get_api_content(self, role_check:bool = True) -> list[dict]:
         result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
             result.append({
@@ -16,7 +16,7 @@ class chat:
                 "content": mes.message
             })
         if len(result) != 0:
-            if result[-1]["role"] == "assistant":
+            if role_check and result[-1]["role"] == "assistant":
                 raise RuntimeError("Last Content's author is ASSISTANT.")
         else:
             raise RuntimeError("Zero Content's ChatCompletion is unavailable.")
