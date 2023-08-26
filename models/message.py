@@ -1,7 +1,9 @@
 from typing import Literal
 
+AUTHORS = Literal["assistant", "user", "system"]
+
 class message:
-    def __init__(self, user_id: str, chat_id: int, message_id: str, message: str, author: Literal["assistant", "user"], send_time: str):
+    def __init__(self, user_id: str, chat_id: int, message_id: str, message: str, author: AUTHORS, send_time: str):
         self.user_id = user_id
         self.chat_id = chat_id
         self.message_id = message_id

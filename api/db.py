@@ -1,12 +1,10 @@
-from typing import Literal
-
 import supabase
 import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from models.chat import chat
-from models.message import message
+from models.message import message, AUTHORS
 
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
@@ -29,7 +27,7 @@ def newchat(user_id: str) -> int:
     return result.data[0]["chat_id"]
 
 
-def addmessage(user_id: str, chat_id: int, newmessage: str, author: Literal["assistant", "user"]) -> message:
+def addmessage(user_id: str, chat_id: int, newmessage: str, author: AUTHORS) -> message:
     # add message to supabase.
     res = supabase_client.table("messages").insert(
         {"user_id": user_id, "chat_id": chat_id, "message": newmessage, "author": author}).execute()
