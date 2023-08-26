@@ -20,6 +20,12 @@ def getchat(user_id: str, chat_id: int) -> chat:
     messages = [message(i["user_id"], i["chat_id"], i["message_id"], i["message"], i["author"],i["time"]) for i in result.data]
     return chat(user_id, chat_id, messages)
 
+def getuserschatid(user_id: str) -> list[int]:
+    result = supabase_client.table("messages").select("chat_id").eq("user_id", user_id).execute()
+    return [i["chat_id"] for i in result.data]
+
+
+
 
 def addmessage(user_id: str, chat_id: int, newmessage: str, author: Literal["assistant", "user"]) -> message:
     # add message to supabase.
