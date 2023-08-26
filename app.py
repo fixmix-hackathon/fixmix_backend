@@ -43,6 +43,17 @@ def callback_get_user_chatids():
     user_id: str = request.args.get("id", type=str)
     return {"result": db.getuserschatid(user_id)}
 
+@app.route("/chats/messages",methods=["GET"])
+def callback_get_chat_messages():
+    """
+    {
+        "user_id": <UID>,
+        "chat_id": <INT>
+    }
+    """
+    user_id: str = request.args.get("user_id", type=str)
+    chat_id: int = request.args.get("chat_id", type=int)
+    return db.getchat(user_id, chat_id).get_content()
 
 @app.route("/",methods=["GET"])
 def callback_route_get():
