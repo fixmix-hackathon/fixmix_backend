@@ -7,15 +7,12 @@ from cl.chat import chat
 
 openai.organization = os.getenv("env_openai_orgid")
 openai.api_key = os.getenv("env_openai_apikey")
-MODEL = os.getenv("openai_model")
 
 
 def run(send_chat: chat) -> str:
-    global MODEL
-
     # call OpenAI's ChatCompletion.
     cmpl = openai.ChatCompletion.create(
-        model=MODEL,
+        model=os.getenv("openai_model"),
         messages=send_chat.get_api_content(),
         temperature=0
     )
