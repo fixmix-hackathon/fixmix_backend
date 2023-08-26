@@ -36,7 +36,7 @@ def callback_callmessage():
     reply_message = db.addmessage(uid, chat_id, reply, "assistant")
 
     chat.messages.append(reply_message)
-    return chat.get_api_content(role_check=False)
+    return chat.get_api_content(role_check=False, show_system_prompt=False)
 
 
 @app.route("/",methods=["GET"])

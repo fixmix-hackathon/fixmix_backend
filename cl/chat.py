@@ -8,9 +8,11 @@ class chat:
         self.chat_id = chat_id
         self.messages = messages
 
-    def get_api_content(self, role_check:bool = True) -> list[dict]:
+    def get_api_content(self, role_check: bool = True, show_system_prompt: bool = True) -> list[dict]:
         result = [{"role": "system", "content": SYSTEM_PROMPT}]
         for mes in sorted(self.messages):
+            if not show_system_prompt and mes.author == "system":
+                continue
             result.append({
                 "role": mes.author,
                 "content": mes.message
