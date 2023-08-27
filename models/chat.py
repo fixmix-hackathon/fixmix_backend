@@ -1,6 +1,6 @@
-from models.message import message
+import os
 
-SYSTEM_PROMPT = "You are a helpful assistant. Please answer in Japanese."
+from models.message import message
 
 class chat:
     def __init__(self, user_id: str, chat_id: int, messages: list[message]):
@@ -15,7 +15,7 @@ class chat:
         return self._jsonalize(role_check=False, show_system_prompt=False, show_timestamp=True)
 
     def _jsonalize(self, role_check: bool, show_system_prompt: bool, show_timestamp: bool) -> list[dict]:
-        result = [{"role": "system", "content": SYSTEM_PROMPT}]
+        result = [{"role": "system", "content": os.getenv("SYSTEM_PROMPT")}]
         for mes in sorted(self.messages):
             _json = {"role": mes.author, "content": mes.message}
             if show_timestamp:
