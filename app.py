@@ -4,9 +4,6 @@ from api import db, ai
 
 app = Flask(__name__)
 
-MODEL = "gpt-3.5-turbo"
-SYSTEM_PROMPT = "You are a helpful assistant. Please answer in Japanese."
-
 @app.route("/call",methods=["POST"])
 def callback_callmessage():
     """
