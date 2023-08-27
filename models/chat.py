@@ -12,7 +12,7 @@ class chat:
         return self._jsonalize(role_check=True, show_system_prompt=True, show_timestamp=False)
 
     def get_content(self) -> list[dict]:
-        return self._jsonalize(role_check=False, show_system_prompt=False, show_timestamp=True)
+        return self._jsonalize(role_check=False, show_system_prompt=True, show_timestamp=True)
 
     def _jsonalize(self, role_check: bool, show_system_prompt: bool, show_timestamp: bool) -> list[dict]:
         result = [{"role": "system", "content": os.getenv("SYSTEM_PROMPT")}]
